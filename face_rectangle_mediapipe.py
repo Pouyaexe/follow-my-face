@@ -23,9 +23,9 @@ with mp_face_detection.FaceDetection(
     # Draw the face detection annotations on the image.
     image.flags.writeable = True
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-    if results.detections:
-      for detection in results.detections:
-        mp_drawing.draw_detection(image, detection)
+    # if results.detections:
+    #   for detection in results.detections:
+    #     mp_drawing.draw_detection(image, detection)
     # Flip the image horizontally for a selfie-view display.
     cv2.imshow('MediaPipe Face Detection', cv2.flip(image, 1))
     if cv2.waitKey(5) & 0xFF == 27:
