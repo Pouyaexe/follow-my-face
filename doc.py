@@ -44,7 +44,6 @@ with mp_hands.Hands(
     # Print the angle on the image.
     cv2.putText(image, f"Angle: {angle:.2f}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2) 
     print(f"Angle: {angle:.2f}")
-    ######
 
     
     for hand_landmarks in results.multi_hand_landmarks:
