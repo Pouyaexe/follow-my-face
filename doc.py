@@ -120,8 +120,6 @@ with mp_hands.Hands(
             mp_drawing_styles.get_default_hand_landmarks_style(),
             mp_drawing_styles.get_default_hand_connections_style())
 
-        image = cv2.flip(image, 1)
-        
         cv2.putText(image, f"Angle: {angle:.2f}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
     # Flip the image horizontally for a selfie horizontally for a selfie-view display.
     cv2.imshow('MediaPipe Hands', image)
