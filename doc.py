@@ -108,7 +108,7 @@ with mp_hands.Hands(
         delta_x = index_finger_tip_coords[0] - thumb_base_coords[0]
         delta_y = index_finger_tip_coords[1] - thumb_base_coords[1]
         angle = math.atan2(delta_y, delta_x)
-        angel = angle * 180 / math.pi
+ 
         
         image = cv2.flip(image, 1)
         # Write the angle on the webcam feed in the top left corner.
