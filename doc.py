@@ -92,7 +92,7 @@ with mp_hands.Hands(
     image.flags.writeable = True
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
     
-    # Flip the image horizontally for a selfie-view display.
+    # Flip the image horizontally for a selfie-view display
     image = cv2.flip(image, 1)
     
     if results.multi_hand_landmarks:
@@ -124,7 +124,8 @@ with mp_hands.Hands(
             mp_drawing_styles.get_default_hand_landmarks_style(),
             mp_drawing_styles.get_default_hand_connections_style())
 
-
+    # Flip the image horizontally for a selfie horizontally for a selfie-view display.
+    cv2.imshow('MediaPipe Hands', image)
     if cv2.waitKey(5) & 0xFF == 27:
       break
 cap.release()
