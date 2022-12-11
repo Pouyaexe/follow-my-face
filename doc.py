@@ -91,9 +91,6 @@ with mp_hands.Hands(
     image.flags.writeable = True
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
     
-    # Flip the image horizontally for a selfie-view display
-    image = cv2.flip(image, 1)
-    
     if results.multi_hand_landmarks:
       for hand_landmarks in results.multi_hand_landmarks:
         # Calculate the angle between the index finger and thumb.
@@ -112,6 +109,8 @@ with mp_hands.Hands(
         delta_y = index_finger_tip_coords[1] - thumb_base_coords[1]
         angle = math.atan2(delta_y, delta_x)
 
+            # Flip the image horizontally for a selfie-view display
+        image = cv2.flip(image, 1)
         # Write the angle on the webcam feed in the top left corner.
         cv2.putText(image, f"Angle: {angle:.2f}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
