@@ -20,7 +20,7 @@ with mp_face_detection.FaceDetection(
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     results = face_detection.process(image)
 
-    # Draw the face detection annotations on the image.
+    # Draw a 
     image.flags.writeable = True
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
     if results.detections:
