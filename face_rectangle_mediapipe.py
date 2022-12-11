@@ -20,12 +20,12 @@ with mp_face_detection.FaceDetection(
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     results = face_detection.process(image)
 
-    # Draw a 
+    # Draw a rectangle around the faces. 
     image.flags.writeable = True
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
     if results.detections:
-      for detection in results.detections:
-        mp_drawing.draw_detection(image, detection)
+        for detection in results.detections:
+            mp_drawing.draw_detection(image, detection)
     # Flip the image horizontally for a selfie-view display.
     cv2.imshow('MediaPipe Face Detection', cv2.flip(image, 1))
     if cv2.waitKey(5) & 0xFF == 27:
