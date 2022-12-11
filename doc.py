@@ -45,7 +45,6 @@ with mp_hands.Hands(
     cv2.putText(image, f"Angle: {angle:.2f}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2) 
     print(f"Angle: {angle:.2f}")
     ######
-    cv2.imshow('MediaPipe Hands', cv2.flip(image, 1))
 
     
     for hand_landmarks in results.multi_hand_landmarks:
