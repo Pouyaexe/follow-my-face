@@ -47,7 +47,7 @@ with mp_hands.Hands(
         angle = math.degrees(angle)
         
         image = cv2.flip(image, 1)
-        # Write the angle on the webcam feed in the top left corner.
+        # Write the angle on the webcam feed in the top left corner. 
         cv2.putText(image, f"Angle: {angle:.2f}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
         image = cv2.flip(image, 1)
         
