@@ -122,7 +122,7 @@ with mp_hands.Hands(
 
         cv2.putText(image, f"Angle: {angle:.2f}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
     # Flip the image horizontally for a selfie horizontally for a selfie-view display.
-    cv2.imshow('MediaPipe Hands', image)
+    cv2.imshow('MediaPipe Hands', cv2.flip(image, 1))
     if cv2.waitKey(5) & 0xFF == 27:
       break
 cap.release()
