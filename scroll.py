@@ -118,7 +118,7 @@ with mp_hands.Hands(
                         # Scroll up.
                         image = text_overlay(image, "Scroll up", 10, 30, (0, 255, 0), 1)
                         # Zoom in on the face.
-                        image = zoom_in(image, x, y, w, h)
+                        zoom_factor = 1.5
                     # See if the index finger is in the bottom bezel of the screen.
                     elif index_finger_tip_coords[1] > image_height * 0.75:
                         # Scroll down.
