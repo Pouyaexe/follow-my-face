@@ -115,7 +115,6 @@ with mp_hands.Hands(
                     hand_landmarks.landmark[mp_hands.HandLandmark.WRIST].y
                     * image_height,
                 )
-
                 # See if the index finger is in the right bezel of the screen.
                 if index_finger_tip_coords[0] > image_width * 0.75:
                     # See if the index finger is in the top bezel of the screen.
@@ -148,6 +147,7 @@ with mp_hands.Hands(
                 # Write the hand detcted text on the down right corner of the screen.
                 image = text_overlay(image,"Hand detected",image_width - 200,image_height - 30,(0, 255, 0))
                     
+
                 # Draw the hand landmarks and connections on the image.
                 mp_drawing.draw_landmarks(
                     image,
