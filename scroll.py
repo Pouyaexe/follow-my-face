@@ -125,11 +125,11 @@ with mp_hands.Hands(
                     # See if the index finger is in the top bezel of the screen.
                     if index_finger_tip_coords[1] < image_height * 0.25:
                         # Zoom in on the face.
-                        zoom_factor = 1.25
+                        zoom_factor = 1.025
                     # See if the index finger is in the bottom bezel of the screen.
                     elif index_finger_tip_coords[1] > image_height * 0.75:
                         # Zoom out on the face.
-                        zoom_factor = 1.1
+                        zoom_factor = 1.01
                 # see if both of the wrist are in the face bounding box, zoom out.
                 if (
                     wrist_coords[0] > x
