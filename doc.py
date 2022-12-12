@@ -30,9 +30,9 @@ with mp_hands.Hands(
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 
-    # Draw a rectangle around each detected face.
+    # Draw a rectangle around each detected face. The color is BGR. so for a white rectangle, we use (255, 255, 255).
     for (x, y, w, h) in faces:
-        cv2.rectangle(image, (x, y), (x + w, y + h), (255, 0, 0), 2)
+        cv2.rectangle(image, (x, y), (x + w, y + h), (255, 255, 255), 2)
 
     # Draw the hand annotations on the image.
     image.flags.writeable = True
