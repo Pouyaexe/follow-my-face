@@ -11,6 +11,10 @@ while True:
     # Read the next frame from the camera
     ret, frame = cap.read()
 
+    if not ret:
+        print("Unable to capture video")
+        break
+
     # Convert the frame to grayscale
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
@@ -31,3 +35,6 @@ while True:
 
 # Release the camera
 cap.release()
+
+# Close all the windows
+cv2.destroyAllWindows()
