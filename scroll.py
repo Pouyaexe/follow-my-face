@@ -163,8 +163,8 @@ with mp_hands.Hands(
             # Draw the zoomed in face on the screen.
             image = zoom_in(image, x, y, w, h)
 
-        # Flip the image horizontally for a selfie horizontally for a selfie-view display.
-        cv2.imshow("MediaPipe Hands", cv2.flip(image, 1))
+        # Flip the image horizontally for a selfie horizontally for a selfie-view display. 
+        cv2.imshow("MediaPipe Hands", cv2.flip(image, 1) )
         if cv2.waitKey(5) & 0xFF == 27:
             break
 cap.release()
