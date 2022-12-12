@@ -28,7 +28,7 @@ def text_overlay(image, text, x, y, color, font_size):
 
 
 # Function to zoom on the detected face and follow it.
-def zoom_in(image, x, y, w, h, zoom_factor=1.5):
+def zoom_in(image, x, y, w, h, zoom_factor=1.75):
 
     # Get the width and height of the face bounding box.
     face_width = w
@@ -116,7 +116,7 @@ with mp_hands.Hands(
                     # See if the index finger is in the top bezel of the screen.
                     if index_finger_tip_coords[1] < image_height * 0.25:
                         # Zoom in on the face.
-                        zoom_factor = 1.5
+                        zoom_factor = 1.25
                     # See if the index finger is in the bottom bezel of the screen.
                     elif index_finger_tip_coords[1] > image_height * 0.75:
                         # Zoom out on the face.
@@ -126,7 +126,7 @@ with mp_hands.Hands(
                     # See if the index finger is in the top bezel of the screen.
                     if index_finger_tip_coords[1] < image_height * 0.25:
                         # Zoom in on the face.
-                        zoom_factor = 1.5
+                        zoom_factor = 1.25
                     # See if the index finger is in the bottom bezel of the screen.
                     elif index_finger_tip_coords[1] > image_height * 0.75:
                         # Zoom out on the face.
