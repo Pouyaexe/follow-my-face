@@ -124,7 +124,7 @@ with mp_hands.Hands(
                     elif index_finger_tip_coords[1] > image_height * 0.75:
                         # Zoom out on the face.
                         zoom_factor = 1
-                # see if the index finger is in the face bounding box to zoom out.
+                # see if both of the index fingers are in the face bounding box, if so, zoom out.
                 for (x, y, w, h) in faces:
                     if (
                         index_finger_tip_coords[0] > x
