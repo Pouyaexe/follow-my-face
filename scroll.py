@@ -39,9 +39,14 @@ def zoom_in(image, x, y, w, h, zoom_factor):
     face_x, face_y = x + face_width / 2, y + face_height / 2
 
     # Calculate the starting and ending x and y coordinates of the face in the image.
-    start_x, start_y, end_x, end_y = face_x - face_width / 2 * zoom_factor, face_y - face_height / 2 * zoom_factor, face_x + face_width / 2 * zoom_factor, face_y + face_height / 2 * zoom_factor
+    start_x, start_y, end_x, end_y = (
+        face_x - face_width / 2 * zoom_factor,
+        face_y - face_height / 2 * zoom_factor,
+        face_x + face_width / 2 * zoom_factor,
+        face_y + face_height / 2 * zoom_factor,
+    )
 
-    # Make sure the starting and ending x and y coordinates are within the bounds of the image. 
+    # Make sure the starting and ending x and y coordinates are within the bounds of the image.
     start_x = max(0, start_x)
     start_y = max(0, start_y)
     end_x = min(image.shape[1] - 1, end_x)
@@ -52,7 +57,11 @@ def zoom_in(image, x, y, w, h, zoom_factor):
 
     # Resize the face image to fit the original image size, keep the aspect ratio.
     face_image = cv2.resize(
-        face_image, (image.shape[1], image.shape[0]), interpolation=cv2.INTER_LANCZOS4, dst=face_image )
+        face_image,
+        (image.shape[1], image.shape[0]),
+        interpolation=cv2.INTER_LANCZOS4,
+        dst=face_image,
+    )
     image = face_image
     # Overlay the face image on the original image.
     # image = cv2.addWeighted(src1=image, alpha=0, src2=face_image, beta=1, gamma=0)
@@ -138,12 +147,12 @@ with mp_hands.Hands(
 
                 # Write the hand detcted text on the down right corner of the screen.
                 image = text_overlay(
-                    image,
-                    "Hand detected",
+                    image,"Hand detected",
+                    
                     image_width - 200,
                     image_height - 30,
                     (0, 255, 0),
-                    1,
+                    1
                 )
 
                 # Draw the hand landmarks and connections on the image.
@@ -159,10 +168,10 @@ with mp_hands.Hands(
             # Draw the zoomed in face on the screen.
             image = zoom_in(image, x, y, w, h, zoom_factor)
 
-        # Flip the image horizontally for a selfie horizontally for a selfie-view display. 
+        # Flip the image horizontally for a selfie horizontally for a selfie-view display.
         cv2.namedWindow("MediaPipe Hands", cv2.WINDOW_KEEPRATIO)
 
-        cv2.imshow("MediaPipe Hands", cv2.flip(image, 1) )
+        cv2.imshow("MediaPipe Hands", cv2.flip(image, 1))
         if cv2.waitKey(5) & 0xFF == 27:
             break
 cap.release()
