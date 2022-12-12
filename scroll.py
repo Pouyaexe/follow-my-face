@@ -28,7 +28,7 @@ def text_overlay(image, text, x, y, color, font_size):
 
 
 # Function to zoom on the detected face and follow it.
-def zoom_in(image, x, y, w, h, zoom_factor=2):
+def zoom_in(image, x, y, w, h, zoom_factor=1.5):
 
     # Get the width and height of the face bounding box.
     face_width = w
