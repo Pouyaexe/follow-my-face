@@ -55,7 +55,7 @@ def zoom_in(image, x, y, w, h, zoom_factor=1.75):
 
     # Resize the face image to fit the original image size, keep the aspect ratio.
     face_image = cv2.resize(
-        face_image, (image.shape[1], image.shape[0]), interpolation=cv2.INTER_AREA, dst=face_image )
+        face_image, (image.shape[1], image.shape[0]), interpolation=cv2.INTER_LANCZOS4, dst=face_image )
     image = face_image
     # Overlay the face image on the original image.
     # image = cv2.addWeighted(src1=image, alpha=0, src2=face_image, beta=1, gamma=0)
