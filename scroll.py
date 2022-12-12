@@ -166,7 +166,6 @@ with mp_hands.Hands(
         # Flip the image horizontally for a selfie horizontally for a selfie-view display. 
         cv2.namedWindow("MediaPipe Hands", cv2.WINDOW_NORMAL)
         # get the max webcam resolution
-        cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
         
         # set your desired size
         cv2.resizeWindow("MediaPipe Hands", 1280, 720)
