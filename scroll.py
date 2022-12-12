@@ -54,11 +54,11 @@ with mp_hands.Hands(
             # See if the index finger is in the top bezel of the screen.
             if index_finger_tip_coords[1] < image_height * 0.25:
                 # Scroll up.
-                print("Scroll up")
+                cv2.putText(image, f"Scroll up", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
             # See if the index finger is in the bottom bezel of the screen.
             elif index_finger_tip_coords[1] > image_height * 0.75:
                 # Scroll down.
-                print("Scroll down")
+                cv2.putText(image, f"Scroll down", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
                 
         image = cv2.flip(image, 1)
         # Write the angle on the webcam feed in the top left corner in white.
