@@ -67,7 +67,7 @@ def zoom_in(image, x, y, w, h, zoom_factor=2):
         gamma=0,
     )
     # changing the global zoom factor.
-    return image
+    return face_image
 
 
 # For webcam input:
