@@ -160,7 +160,7 @@ with mp_hands.Hands(
         # if the zoom factor is greater than 1, then we are zoomed in on the face.
         if zoom_factor > 1:
             # Draw the zoomed in face on the screen.
-            image = zoom_in(image, x, y, w, h)
+            image = zoom_in(image, x, y, w, h, zoom_factor)
 
         # Flip the image horizontally for a selfie horizontally for a selfie-view display. 
         cv2.namedWindow("MediaPipe Hands", cv2.WINDOW_KEEPRATIO)
