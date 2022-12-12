@@ -59,6 +59,21 @@ def zoom_in(image, x, y, w, h, zoom_factor=1.75):
     image = face_image
     # Overlay the face image on the original image.
     # image = cv2.addWeighted(src1=image, alpha=0, src2=face_image, beta=1, gamma=0)
+    # Calculate the number of frames in the transition period.
+    frame_rate = 30.0  # Assume a frame rate of 30 FPS.
+    num_frames = int(transition_duration * frame_rate)
+
+    # Linearly interpolate the alpha and beta weights of the face image over the transition period.
+    for frame in range(num_frames):
+        alpha = frame / num_frames
+        beta = 1 - alpha
+        image = cv2.addWeighted(
+            src1=image,
+            alpha=alpha,  # The alpha weight of the original image.
+            src2=face_image,
+            beta=beta,  # The beta weight of the face image.
+            gamma=0,
+        )
     return image
 
 
