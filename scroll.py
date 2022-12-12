@@ -124,6 +124,15 @@ with mp_hands.Hands(
                     elif index_finger_tip_coords[1] > image_height * 0.75:
                         # Zoom out on the face.
                         zoom_factor = 1
+                # see if the index finger is in the face bounding box to zoom out.
+                for (x, y, w, h) in faces:
+                    if (
+                        index_finger_tip_coords[0] > x
+                        and index_finger_tip_coords[0] < x + w
+                        and index_finger_tip_coords[1] > y
+                        and index_finger_tip_coords[1] < y + h
+                    ):
+                        zoom_factor = 1
 
                 # Write the hand detcted text on the down right corner of the screen.
                 image = text_overlay(
