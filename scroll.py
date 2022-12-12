@@ -65,7 +65,7 @@ def zoom_in(image, x, y, w, h, zoom_factor=2):
         beta=1,  # beta is the weight of the face image.
         gamma=0,
     )
-
+    # changing the global zoom factor.
     return image
 
 
