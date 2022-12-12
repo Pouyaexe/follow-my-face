@@ -34,14 +34,10 @@ def zoom_in(image, x, y, w, h, zoom_factor):
     face_width, face_height = w, h
     
     # Get the center of the face.
-    face_x = x + face_width / 2
-    face_y = y + face_height / 2
+    face_x, face_y = x + face_width / 2, y + face_height / 2
 
     # Calculate the starting and ending x and y coordinates of the face in the image.
-    start_x = face_x - face_width / 2 * zoom_factor
-    start_y = face_y - face_height / 2 * zoom_factor
-    end_x = face_x + face_width / 2 * zoom_factor
-    end_y = face_y + face_height / 2 * zoom_factor
+    start_x, start_y, end_x, end_y = face_x - face_width / 2 * zoom_factor, face_y - face_height / 2 * zoom_factor, face_x + face_width / 2 * zoom_factor, face_y + face_height / 2 * zoom_factor
 
     # Make sure the starting and ending x and y coordinates are within the bounds of the image.
     start_x = max(0, start_x)
