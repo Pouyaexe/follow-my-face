@@ -13,7 +13,9 @@ zoom_factor = 1
 
 # Function to overlay text on image using cv.putText() but filip the image first, display the text, then flip the image back.
 def text_overlay(image, text, x, y, color, font_size):
+    # Flip image horizontally
     image = cv2.flip(image, 1)
+    # Add text overlay
     cv2.putText(
         img=image,
         text=text,
@@ -23,6 +25,7 @@ def text_overlay(image, text, x, y, color, font_size):
         color=color,
         thickness=2,
     )
+    # Flip image horizontally again
     image = cv2.flip(image, 1)
     return image
 
