@@ -147,11 +147,11 @@ with mp_hands.Hands(
 
                 # Write the hand detcted text on the down right corner of the screen.
                 image = text_overlay(
-                    image,"Hand detected",
+                    image,"Hand detected",image_width - 200,image_height - 30,(0, 255, 0),
                     
-                    image_width - 200,
-                    image_height - 30,
-                    (0, 255, 0),
+                    
+                    
+                    
                     1
                 )
 
