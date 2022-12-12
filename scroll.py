@@ -49,10 +49,20 @@ with mp_hands.Hands(
             hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].x * image_width,
             hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y * image_height,
         )
-        
+        # See if the index finger is in the right bezel of the screen.
+        if index_finger_tip_coords[0] > image_width * 0.75:
+            # See if the index finger is in the top bezel of the screen.
+            if index_finger_tip_coords[1] < image_height * 0.25:
+                # Scroll up.
+                print("Scroll up")
+            # See if the index finger is in the bottom bezel of the screen.
+            elif index_finger_tip_coords[1] > image_height * 0.75:
+                # Scroll down.
+                print("Scroll down")
+                
         image = cv2.flip(image, 1)
         # Write the angle on the webcam feed in the top left corner in white.
-        cv2.putText(image, f"Angle: {angle:.2f}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+        cv2.putText(image, f"Angle: ", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
         image = cv2.flip(image, 1)
         
         # Draw the hand landmarks and connections on the image.
