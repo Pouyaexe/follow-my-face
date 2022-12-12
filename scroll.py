@@ -1,5 +1,7 @@
 import cv2
 import mediapipe as mp
+import math
+
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_hands = mp.solutions.hands
@@ -51,7 +53,7 @@ with mp_hands.Hands(
             hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_CMC].x * image_width,
             hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_CMC].y * image_height,
         )
-        import math
+        
         delta_x = index_finger_tip_coords[0] - thumb_base_coords[0]
         delta_y = index_finger_tip_coords[1] - thumb_base_coords[1]
         angle = math.atan2(delta_y, delta_x)
