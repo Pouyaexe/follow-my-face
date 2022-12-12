@@ -49,15 +49,6 @@ with mp_hands.Hands(
             hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].x * image_width,
             hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y * image_height,
         )
-        thumb_base_coords = (
-            hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_CMC].x * image_width,
-            hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_CMC].y * image_height,
-        )
-        
-        delta_x = index_finger_tip_coords[0] - thumb_base_coords[0]
-        delta_y = index_finger_tip_coords[1] - thumb_base_coords[1]
-        angle = math.atan2(delta_y, delta_x)
-        angle = math.degrees(angle)
         
         image = cv2.flip(image, 1)
         # Write the angle on the webcam feed in the top left corner in white.
