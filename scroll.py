@@ -26,7 +26,8 @@ def text_overlay(image, text, x, y, color, font_size):
     image = cv2.flip(image, 1)
     return image
 
-# Function to zoom on the detected face and follow it. 
+
+# Function to zoom on the detected face and follow it.
 def zoom_in(image, x, y, w, h, zoom_factor=2):
 
     # Get the width and height of the face bounding box.
@@ -131,7 +132,7 @@ with mp_hands.Hands(
                         # Scroll up.
                         image = text_overlay(image, "Scroll up", 10, 30, (0, 255, 0), 1)
                         # Zoom in on the face.
-                        image = zoom_in(image, x, y, w, h)
+                        zoom_factor
                     # See if the index finger is in the bottom bezel of the screen.
                     elif index_finger_tip_coords[1] > image_height * 0.75:
                         # Scroll down.
@@ -157,6 +158,10 @@ with mp_hands.Hands(
                     mp_drawing_styles.get_default_hand_landmarks_style(),
                     mp_drawing_styles.get_default_hand_connections_style(),
                 )
+        # if the zoom factor is greater than 1, then we are zoomed in on the face.
+        if zoom_factor > 1:
+            # Draw the zoomed in face on the screen.
+            image = zoom_in(image, x, y, w, h)
 
         # Flip the image horizontally for a selfie horizontally for a selfie-view display.
         cv2.imshow("MediaPipe Hands", cv2.flip(image, 1))
