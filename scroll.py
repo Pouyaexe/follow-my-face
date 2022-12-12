@@ -31,9 +31,11 @@ def text_overlay(image, text, x, y, color, font_size):
 def zoom_in(image, x, y, w, h, zoom_factor):
 
     # Get the width and height of the face bounding box.
-    face_width = w
-    face_height = h
+    face_width, face_height = w, h
 
+    # adjust the zoom factor based on the width of the face bounding box.
+    zoom_factor = 1 + (face_width / 1000) * 2 
+    
     # Get the center of the face.
     face_x = x + face_width / 2
     face_y = y + face_height / 2
