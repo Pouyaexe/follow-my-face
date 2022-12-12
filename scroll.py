@@ -164,7 +164,7 @@ with mp_hands.Hands(
             image = zoom_in(image, x, y, w, h)
 
         # Flip the image horizontally for a selfie horizontally for a selfie-view display. 
-        cv2.namedWindow("MediaPipe Hands", cv2.WINDOW_NORMAL)
+        cv2.namedWindow("MediaPipe Hands", cv2.WINDOW_KEEPRATIO)
 
         cv2.imshow("MediaPipe Hands", cv2.flip(image, 1) )
         if cv2.waitKey(5) & 0xFF == 27:
