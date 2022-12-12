@@ -16,3 +16,4 @@ with open("versions.txt", "w") as f:
     f.write("numpy version: " + np.__version__ + "\n")
     
 # Now write a pip freeze to a text file.(pip freeze is a command that lists all the packages installed in the current Python environment.)
+!pip freeze > pip_freeze.txt
