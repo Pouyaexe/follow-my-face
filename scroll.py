@@ -24,32 +24,6 @@ def text_overlay(image, text, x, y, color, font_size):
     image = cv2.flip(image, 1)
     return image
 
-
-# # Function to zoom on the detected face and follow it. (zoom factor = 1 means no zoom)
-# def zoom_in(image, x, y, w, h, zoom_factor=2.25):
-#     # if the there is no face detected, return the original image.
-#     if x == 0 and y == 0 and w == 0 and h == 0:
-#         return image
-#     # Calculate the center of the face.
-#     center_x = x + w // 2
-#     center_y = y + h // 2
-
-#     # Calculate the new width and height of the face.
-#     new_w = int(w * zoom_factor)
-#     new_h = int(h * zoom_factor)
-
-#     # Calculate the top left corner of the new face.
-#     new_x = center_x - new_w // 2
-#     new_y = center_y - new_h // 2
-
-#     # Crop the image to the new face.
-#     image = image[new_y:new_y + new_h, new_x:new_x + new_w]
-
-#     # Resize the image to the original size.
-#     # image = cv2.resize(image, (w, h))
-
-#     return image
-
 # Function to zoom on the detected face and follow it. it will st
 def zoom_in(image, x, y, w, h, zoom_factor=2):
 
