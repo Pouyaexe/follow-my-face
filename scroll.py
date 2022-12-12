@@ -41,7 +41,7 @@ def zoom_in(image, x, y, w, h, zoom_factor):
     # Calculate the starting and ending x and y coordinates of the face in the image.
     start_x, start_y, end_x, end_y = face_x - face_width / 2 * zoom_factor, face_y - face_height / 2 * zoom_factor, face_x + face_width / 2 * zoom_factor, face_y + face_height / 2 * zoom_factor
 
-    # Make sure the starting and ending x and y coordinates are within the bounds of the image.
+    # Make sure the starting and ending x and y coordinates are within the bounds of the image. 
     start_x = max(0, start_x)
     start_y = max(0, start_y)
     end_x = min(image.shape[1] - 1, end_x)
