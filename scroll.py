@@ -115,31 +115,23 @@ with mp_hands.Hands(
                 if index_finger_tip_coords[0] > image_width * 0.75:
                     # See if the index finger is in the top bezel of the screen.
                     if index_finger_tip_coords[1] < image_height * 0.25:
-                        # Scroll up.
-                        image = text_overlay(image, "Scroll up", 10, 30, (0, 255, 0), 1)
                         # Zoom in on the face.
                         zoom_factor = 1.5
                     # See if the index finger is in the bottom bezel of the screen.
                     elif index_finger_tip_coords[1] > image_height * 0.75:
-                        # Scroll down.
-                        image = text_overlay(
-                            image, "Scroll down", 10, 30, (0, 255, 0), 1
-                        )
+                        # Zoom out on the face.
+                        zoom_factor = 1
                 # See if the index finger is in the left bezel of the screen.
                 if index_finger_tip_coords[0] < image_width * 0.25:
                     # See if the index finger is in the top bezel of the screen.
                     if index_finger_tip_coords[1] < image_height * 0.25:
-                        # Scroll up.
-                        image = text_overlay(image, "Scroll up", 10, 30, (0, 255, 0), 1)
                         # Zoom in on the face.
                         zoom_factor = 1.5
                     # See if the index finger is in the bottom bezel of the screen.
                     elif index_finger_tip_coords[1] > image_height * 0.75:
-                        # Scroll down.
-                        image = text_overlay(
-                            image, "Scroll down", 10, 30, (0, 255, 0), 1
-                        )
-
+                        # Zoom out on the face.
+                        zoom_factor = 1
+                        
                 # Write the hand detcted text on the down right corner of the screen.
                 image = text_overlay(
                     image,
