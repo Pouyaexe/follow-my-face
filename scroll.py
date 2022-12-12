@@ -1,80 +1,189 @@
 import cv2
 import mediapipe as mp
-import math
 
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_hands = mp.solutions.hands
 
 # Load the Haar cascade classifier for face detection.
-face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+
+# Function to overlay text on image using cv.putText() but filip the image first, display the text, then flip the image back.
+def text_overlay(image, text, x, y, color, font_size):
+
+    image = cv2.flip(image, 1)
+    cv2.putText(
+        img=image,
+        text=text,
+        org=(x, y),
+        fontFace=cv2.FONT_HERSHEY_SIMPLEX,
+        fontScale=font_size,
+        color=color,
+        thickness=2,
+    )
+    image = cv2.flip(image, 1)
+    return image
+
+
+# # Function to zoom on the detected face and follow it. (zoom factor = 1 means no zoom)
+# def zoom_in(image, x, y, w, h, zoom_factor=2.25):
+#     # if the there is no face detected, return the original image.
+#     if x == 0 and y == 0 and w == 0 and h == 0:
+#         return image
+#     # Calculate the center of the face.
+#     center_x = x + w // 2
+#     center_y = y + h // 2
+
+#     # Calculate the new width and height of the face.
+#     new_w = int(w * zoom_factor)
+#     new_h = int(h * zoom_factor)
+
+#     # Calculate the top left corner of the new face.
+#     new_x = center_x - new_w // 2
+#     new_y = center_y - new_h // 2
+
+#     # Crop the image to the new face.
+#     image = image[new_y:new_y + new_h, new_x:new_x + new_w]
+
+#     # Resize the image to the original size.
+#     # image = cv2.resize(image, (w, h))
+
+#     return image
+
+# Function to zoom on the detected face and follow it. it will st
+def zoom_in(image, x, y, w, h, zoom_factor=2):
+
+    # Get the width and height of the face bounding box.
+    face_width = w
+    face_height = h
+
+    # Get the center of the face.
+    face_x = x + face_width / 2
+    face_y = y + face_height / 2
+
+    # Calculate the starting and ending x and y coordinates of the face in the image.
+    start_x = face_x - face_width / 2 * zoom_factor
+    start_y = face_y - face_height / 2 * zoom_factor
+    end_x = face_x + face_width / 2 * zoom_factor
+    end_y = face_y + face_height / 2 * zoom_factor
+
+    # Make sure the starting and ending x and y coordinates are within the bounds of the image.
+    start_x = max(0, start_x)
+    start_y = max(0, start_y)
+    end_x = min(image.shape[1] - 1, end_x)
+    end_y = min(image.shape[0] - 1, end_y)
+
+    # Get the sub-image of the face.
+    face_image = image[int(start_y) : int(end_y), int(start_x) : int(end_x)]
+
+    # Resize the face image to fit the original image size.
+    face_image = cv2.resize(
+        face_image, (image.shape[1], image.shape[0]), interpolation=cv2.INTER_LINEAR
+    )
+
+    # Overlay the face image on the original image.
+    image = cv2.addWeighted(
+        src1=image,
+        alpha=0,  # alpha is the weight of the original image.
+        src2=face_image,
+        beta=1,  # beta is the weight of the face image.
+        gamma=0,
+    )
+
+    return image
+
 
 # For webcam input:
 cap = cv2.VideoCapture(0)
 with mp_hands.Hands(
-    model_complexity=0,
-    min_detection_confidence=0.5,
-    min_tracking_confidence=0.5) as hands:
-  while cap.isOpened():
-    success, image = cap.read()
-    if not success:
-      print("Ignoring empty camera frame.")
-      # If loading a video, use 'break' instead of 'continue'.
-      continue
+    model_complexity=0, min_detection_confidence=0.5, min_tracking_confidence=0.5
+) as hands:
+    while cap.isOpened():
+        success, image = cap.read()
+        if not success:
+            print("Ignoring empty camera frame.")
+            # If loading a video, use 'break' instead of 'continue'.
+            continue
 
-    # To improve performance, optionally mark the image as not writeable to
-    # pass by reference.
-    image.flags.writeable = False
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    results = hands.process(image)
+        # To improve performance, optionally mark the image as not writeable to
+        # pass by reference.
+        image.flags.writeable = False
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        results = hands.process(image)
 
-    # Detect faces in the webcam feed.
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+        # Detect faces in the webcam feed.
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 
-    # Draw a rectangle around each detected face. The color is BGR. so for a white rectangle, we use (255, 255, 255).
-    for (x, y, w, h) in faces:
-        cv2.rectangle(image, (x, y), (x + w, y + h), (255, 255, 255), 2)
+        # Draw a rectangle around each detected face. The color is BGR. so for a white rectangle, we use (255, 255, 255).
+        for (x, y, w, h) in faces:
+            cv2.rectangle(image, (x, y), (x + w, y + h), (255, 255, 255), 2)
 
-    # Draw the hand annotations on the image.
-    image.flags.writeable = True
-    image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-    
-    if results.multi_hand_landmarks:
-      for hand_landmarks in results.multi_hand_landmarks:
-        # Calculate the angle between the index finger and thumb.
-        image_height, image_width, _ = image.shape
-        
-        index_finger_tip_coords = (
-            hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].x * image_width,
-            hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y * image_height,
-        )
-        # See if the index finger is in the right bezel of the screen.
-        if index_finger_tip_coords[0] > image_width * 0.75:
-            # See if the index finger is in the top bezel of the screen.
-            if index_finger_tip_coords[1] < image_height * 0.25:
-                # Scroll up.
-                cv2.putText(image, f"Scroll up", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-            # See if the index finger is in the bottom bezel of the screen.
-            elif index_finger_tip_coords[1] > image_height * 0.75:
-                # Scroll down.
-                cv2.putText(image, f"Scroll down", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-                
-        image = cv2.flip(image, 1)
-        # Write the angle on the webcam feed in the top left corner in white.
-        cv2.putText(image, f"Angle: ", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-        image = cv2.flip(image, 1)
-        
-        # Draw the hand landmarks and connections on the image.
-        mp_drawing.draw_landmarks(
-            image,
-            hand_landmarks,
-            mp_hands.HAND_CONNECTIONS,
-            mp_drawing_styles.get_default_hand_landmarks_style(),
-            mp_drawing_styles.get_default_hand_connections_style())
+        # Draw the hand annotations on the image.
+        image.flags.writeable = True
+        image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
-    # Flip the image horizontally for a selfie horizontally for a selfie-view display.
-    cv2.imshow('MediaPipe Hands', cv2.flip(image, 1))
-    if cv2.waitKey(5) & 0xFF == 27:
-      break
+        if results.multi_hand_landmarks:
+            for hand_landmarks in results.multi_hand_landmarks:
+                # Get the coordinates of the index finger tip.
+                image_height, image_width, _ = image.shape
+
+                index_finger_tip_coords = (
+                    hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].x
+                    * image_width,
+                    hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y
+                    * image_height,
+                )
+                # See if the index finger is in the right bezel of the screen.
+                if index_finger_tip_coords[0] > image_width * 0.75:
+                    # See if the index finger is in the top bezel of the screen.
+                    if index_finger_tip_coords[1] < image_height * 0.25:
+                        # Scroll up.
+                        image = text_overlay(image, "Scroll up", 10, 30, (0, 255, 0), 1)
+                        # Zoom in on the face.
+                        image = zoom_in(image, x, y, w, h)
+                    # See if the index finger is in the bottom bezel of the screen.
+                    elif index_finger_tip_coords[1] > image_height * 0.75:
+                        # Scroll down.
+                        image = text_overlay(
+                            image, "Scroll down", 10, 30, (0, 255, 0), 1
+                        )
+                # See if the index finger is in the left bezel of the screen.
+                if index_finger_tip_coords[0] < image_width * 0.25:
+                    # See if the index finger is in the top bezel of the screen.
+                    if index_finger_tip_coords[1] < image_height * 0.25:
+                        # Scroll up.
+                        image = text_overlay(image, "Scroll up", 10, 30, (0, 255, 0), 1)
+                        # Zoom in on the face.
+                        image = zoom_in(image, x, y, w, h)
+                    # See if the index finger is in the bottom bezel of the screen.
+                    elif index_finger_tip_coords[1] > image_height * 0.75:
+                        # Scroll down.
+                        image = text_overlay(
+                            image, "Scroll down", 10, 30, (0, 255, 0), 1
+                        )
+
+                # Write the hand detcted text on the down right corner of the screen.
+                image = text_overlay(
+                    image,
+                    "Hand detected",
+                    image_width - 200,
+                    image_height - 30,
+                    (0, 255, 0),
+                    1,
+                )
+
+                # Draw the hand landmarks and connections on the image.
+                mp_drawing.draw_landmarks(
+                    image,
+                    hand_landmarks,
+                    mp_hands.HAND_CONNECTIONS,
+                    mp_drawing_styles.get_default_hand_landmarks_style(),
+                    mp_drawing_styles.get_default_hand_connections_style(),
+                )
+
+        # Flip the image horizontally for a selfie horizontally for a selfie-view display.
+        cv2.imshow("MediaPipe Hands", cv2.flip(image, 1))
+        if cv2.waitKey(5) & 0xFF == 27:
+            break
 cap.release()
