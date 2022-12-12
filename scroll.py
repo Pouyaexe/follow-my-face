@@ -28,8 +28,7 @@ def text_overlay(image, text, x, y, color, font_size):
 
 
 # Function to zoom on the detected face and follow it.
-def zoom_in(image, x, y, w, h, zoom_factor=1.75):
-
+def zoom_in(image, x, y, w, h, zoom_factor=2, transition_duration=1.0):
     # Get the width and height of the face bounding box.
     face_width = w
     face_height = h
@@ -53,12 +52,11 @@ def zoom_in(image, x, y, w, h, zoom_factor=1.75):
     # Get the sub-image of the face.
     face_image = image[int(start_y) : int(end_y), int(start_x) : int(end_x)]
 
-    # Resize the face image to fit the original image size, keep the aspect ratio.
+    # Use cubic interpolation to resize the face image to fit the original image size.
     face_image = cv2.resize(
-        face_image, (image.shape[1], image.shape[0]), interpolation=cv2.INTER_LANCZOS4, dst=face_image )
-    image = face_image
-    # Overlay the face image on the original image.
-    # image = cv2.addWeighted(src1=image, alpha=0, src2=face_image, beta=1, gamma=0)
+        face_image, (image.shape[1], image.shape[0]), interpolation=cv2.INTER_CUBIC
+    )
+
     # Calculate the number of frames in the transition period.
     frame_rate = 30.0  # Assume a frame rate of 30 FPS.
     num_frames = int(transition_duration * frame_rate)
@@ -75,6 +73,7 @@ def zoom_in(image, x, y, w, h, zoom_factor=1.75):
             gamma=0,
         )
     return image
+
 
 
 # For webcam input:
