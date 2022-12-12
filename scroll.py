@@ -8,7 +8,9 @@ mp_hands = mp.solutions.hands
 # Load the Haar cascade classifier for face detection.
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
-# Global zoo
+# Global zoom factor. if the zoom factor goes higher than 1, the image will zoom in on the detected face.
+zoom_factor = 1
+
 # Function to overlay text on image using cv.putText() but filip the image first, display the text, then flip the image back.
 def text_overlay(image, text, x, y, color, font_size):
     image = cv2.flip(image, 1)
