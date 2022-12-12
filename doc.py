@@ -48,8 +48,8 @@ with mp_hands.Hands(
             hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y * image_height,
         )
         thumb_base_coords = (
-            hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_TIP].x * image_width,
-            hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_TIP].y * image_height,
+            hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_CMC].x * image_width,
+            hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_CMC].y * image_height,
         )
         import math
         delta_x = index_finger_tip_coords[0] - thumb_base_coords[0]
