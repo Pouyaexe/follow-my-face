@@ -15,16 +15,6 @@ face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 zoom_factor = 1
 
 # Function to overlay text on image using cv.putText() but filip the image first, display the text, then flip the image back.
-# This function is used to draw text on the screen.
-# The function is called from the main loop
-# The function takes the following parameters:
-# image: The image to be displayed
-# text: The text to be displayed
-# x: The x coordinate where the text will be displayed
-# y: The y coordinate where the text will be displayed
-# color: The color of the text
-# font_size: The size of the text
-
 def text_overlay(image, text, x, y, color, font_size):
     # Flip image horizontally
     image = cv2.flip(image, 1)
