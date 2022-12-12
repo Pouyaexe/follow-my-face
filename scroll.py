@@ -104,6 +104,13 @@ with mp_hands.Hands(
                     hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y
                     * image_height,
                 )
+                wrist_coords = (
+                    hand_landmarks.landmark[mp_hands.HandLandmark.WRIST].x
+                    * image_width,
+                    hand_landmarks.landmark[mp_hands.HandLandmark.WRIST].y
+                    * image_height,
+                )
+
                 # See if the index finger is in the right bezel of the screen.
                 if index_finger_tip_coords[0] > image_width * 0.75:
                     # See if the index finger is in the top bezel of the screen.
@@ -124,12 +131,12 @@ with mp_hands.Hands(
                     elif index_finger_tip_coords[1] > image_height * 0.75:
                         # Zoom out on the face.
                         zoom_factor = 1
-                # see if both of the index fingers are in the face bounding box, if so, zoom out.
+                # see if both of the wrist are in the face bounding box, zoom out.
                 if (
-                    index_finger_tip_coords[0] > x
-                    and index_finger_tip_coords[0] < x + w
-                    and index_finger_tip_coords[1] > y
-                    and index_finger_tip_coords[1] < y + h
+                    wrist_coords[0] > x
+                    and wrist_coords[0] < x + w
+                    and wrist_coords[1] > y
+                    and wrist_coords[1] < y + h
                 ):
                     zoom_factor = 1
 
