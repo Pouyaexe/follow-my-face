@@ -57,17 +57,10 @@ def zoom_in(image, x, y, w, h, zoom_factor=2):
     face_image = cv2.resize(
         face_image, (image.shape[1], image.shape[0]), interpolation=cv2.INTER_LINEAR
     )
-
+    image = face_image
     # Overlay the face image on the original image.
-    image = cv2.addWeighted(
-        src1=image,
-        alpha=0,  # alpha is the weight of the original image.
-        src2=face_image,
-        beta=1,  # beta is the weight of the face image.
-        gamma=0 # gamma is the scalar added to each sum.
-    )
-    # changing the global zoom factor.
-    return face_image
+    # image = cv2.addWeighted(src1=image, alpha=0, src2=face_image, beta=1, gamma=0)
+    return image
 
 
 # For webcam input:
@@ -131,7 +124,7 @@ with mp_hands.Hands(
                     elif index_finger_tip_coords[1] > image_height * 0.75:
                         # Zoom out on the face.
                         zoom_factor = 1
-                        
+
                 # Write the hand detcted text on the down right corner of the screen.
                 image = text_overlay(
                     image,
