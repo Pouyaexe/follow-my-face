@@ -33,8 +33,8 @@ def zoom_in(image, x, y, w, h, zoom_factor):
     # Get the width and height of the face bounding box.
     face_width, face_height = w, h
 
-    # adjust the zoom factor based on the width of the face bounding box.
-    zoom_factor = 1 
+    # adjust the zoom factor to be based on the width of the frame
+    zoom_factor = zoom_factor * (image.shape[1] / face_width)
     
     # Get the center of the face.
     face_x = x + face_width / 2
