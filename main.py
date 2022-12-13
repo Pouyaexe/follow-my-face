@@ -47,8 +47,10 @@ with mp_hands.Hands(
             # Move the mouse cursor.
             move_mouse(results.multi_hand_landmarks[0].landmark[8].x, results.multi_hand_landmarks[0].landmark[8].y)
             
-            # Simulate a left mouse button click when the index
-            
+            # Simulate a left mouse button click when the index is pointing at the camera(all of the landmarks are in the same x coordinate).
+            if results.multi_hand_landmarks[0].landmark[8].x == results.multi_hand_landmarks[0].landmark[5].x == results.multi_hand_landmarks[0].landmark[9].x == results.multi_hand_landmarks[0].landmark[13].x == results.multi_hand_landmarks[0].landmark[17].x == results.multi_hand_landmarks[0].landmark[1].x:
+                click_mouse()
+                print           
         # if the zoom factor is greater than 1, then we are zoomed in on the face.
         if zoom_factor > 1:
             # Draw the zoomed in face on the screen.
