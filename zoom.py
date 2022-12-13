@@ -1,8 +1,10 @@
+i
 # Function to zoom on the detected face and follow it.
 def zoom_in(image, x, y, w, h, zoom_factor):
 
     # Zoom factor must be greater than 1.
     zoom_factor = zoom_factor**4
+
     # Get the width and height of the face bounding box.
     face_width, face_height = w, h
 
