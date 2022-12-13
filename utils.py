@@ -81,7 +81,22 @@ def text_overlay(image, text, x, y, color, font_size):
     return image
 
 
-def hand_zoom_factor(x, y, w, h, hand_landmarks, zoom_factor = 1):
+def hand_zoom_factor(x, y, w, h, results , image_width, image_height, zoom_factor = 1):
+    """Get the zoom factor based on the hand landmarks.
+
+    Args:
+        x (int): x coordinate of the face bounding box
+        y (int): y coordinate of the face bounding box
+        w (int): width of the face bounding box
+        h (int): height of the face bounding box
+        results (): results from the hand detection model
+        image_width (_type_): _description_
+        image_height (_type_): _description_
+        zoom_factor (int, optional): _description_. Defaults to 1.
+
+    Returns:
+        _type_: _description_
+    """
     for hand_landmarks in results.multi_hand_landmarks:
                     # Get the zoom factor based on the hand landmarks.    
         index_finger_tip_coords = (
