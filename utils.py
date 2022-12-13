@@ -1,6 +1,6 @@
 import cv2
 import mediapipe as mp
-import types
+from types import tuple
 import numpy as np
 
 mp_drawing = mp.solutions.drawing_utils
@@ -53,7 +53,7 @@ def zoom_in(image, x, y, w, h, zoom_factor):
     return image
 
 # Function to overlay text on image using cv.putText() but filip the image first, display the text, then flip the image back.
-def text_overlay(image: np.ndarray, text: str, x: int, y: int, color: Tuple[int, int, int], font_size: float) -> np.ndarray:
+def text_overlay(image: np.ndarray, text: str, x: int, y: int, color: tuple[int, int, int], font_size: float) -> np.ndarray:
     """Overlay text on image using cv.putText() but filip the image first, display the text, then flip the image back.
 
     Args:
