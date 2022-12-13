@@ -130,6 +130,25 @@ def hand_zoom_factor(x, y, w, h, results , image_width, image_height, zoom_facto
             and wrist_coords[1] < y + h
         ):
             zoom_factor = 1
+            
+        # Write the hand detcted text on the down right corner of the screen.
+        image = text_overlay(
+            image,
+            "Hand detected",
+            image_width - 200,
+            image_height - 30,
+            (0, 255, 0),
+            1,
+        )
+
+        # Draw the hand landmarks and connections on the image.
+        mp_drawing.draw_landmarks(
+            image,
+            hand_landmarks,
+            mp_hands.HAND_CONNECTIONS,
+            mp_drawing_styles.get_default_hand_landmarks_style(),
+            mp_drawing_styles.get_default_hand_connections_style(),
+        )
     return zoom_factor
 
 if __name__ == "__main__":

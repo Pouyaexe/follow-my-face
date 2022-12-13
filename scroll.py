@@ -44,26 +44,9 @@ with mp_hands.Hands(
 
         if results.multi_hand_landmarks:
 
-                zoom_factor = hand_zoom_factor(x, y, w, h, hand_landmarks, zoom_factor)
+            zoom_factor = hand_zoom_factor(x, y, w, h, results, image_width, image_height, zoom_factor)
 
-                # Write the hand detcted text on the down right corner of the screen.
-                image = text_overlay(
-                    image,
-                    "Hand detected",
-                    image_width - 200,
-                    image_height - 30,
-                    (0, 255, 0),
-                    1,
-                )
-
-                # Draw the hand landmarks and connections on the image.
-                mp_drawing.draw_landmarks(
-                    image,
-                    hand_landmarks,
-                    mp_hands.HAND_CONNECTIONS,
-                    mp_drawing_styles.get_default_hand_landmarks_style(),
-                    mp_drawing_styles.get_default_hand_connections_style(),
-                )
+                
         # if the zoom factor is greater than 1, then we are zoomed in on the face.
         if zoom_factor > 1:
             # Draw the zoomed in face on the screen.
