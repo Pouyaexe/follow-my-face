@@ -11,7 +11,7 @@ def move_mouse(x, y):
 
 
   # Move the mouse to the scaled coordinates. For mirroring the screen, swap x_scaled and screen_width - x_scaled.
-  ctypes.windll.user32.SetCursorPos(x_scaled, y_scaled)
+  ctypes.windll.user32.SetCursorPos(screen_width - x_scaled, y_scaled)
 
 def click_mouse():
   # Simulate a left mouse button click.
