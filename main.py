@@ -46,8 +46,6 @@ with mp_hands.Hands(
             image, zoom_factor = hand_zoom_factor(image, results, x, y, w, h, zoom_factor)           
             # Move the mouse cursor.
             move_mouse(results.multi_hand_landmarks[0].landmark[8].x, results.multi_hand_landmarks[0].landmark[8].y)
-            
-            # Simulate a left mouse button click when the user closes their hand.
                     
         # if the zoom factor is greater than 1, then we are zoomed in on the face.
         if zoom_factor > 1:
