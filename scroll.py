@@ -11,7 +11,7 @@ face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 # Global zoom factor. if the zoom factor goes higher than 1, the image will zoom in on the detected face.
 zoom_factor = 1
 
-
+def 
 
 # For webcam input:
 cap = cv2.VideoCapture(0)
@@ -44,51 +44,7 @@ with mp_hands.Hands(
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
         if results.multi_hand_landmarks:
-            for hand_landmarks in results.multi_hand_landmarks:
-                # Get the coordinates of the index finger tip.
-                image_height, image_width, _ = image.shape
 
-                index_finger_tip_coords = (
-                    hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].x
-                    * image_width,
-                    hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y
-                    * image_height,
-                )
-                wrist_coords = (
-                    hand_landmarks.landmark[mp_hands.HandLandmark.WRIST].x
-                    * image_width,
-                    hand_landmarks.landmark[mp_hands.HandLandmark.WRIST].y
-                    * image_height,
-                )
-
-                # See if the index finger is in the right bezel of the screen.
-                if index_finger_tip_coords[0] > image_width * 0.75:
-                    # See if the index finger is in the top bezel of the screen.
-                    if index_finger_tip_coords[1] < image_height * 0.25:
-                        # Zoom in on the face.
-                        zoom_factor = 1.25
-                    # See if the index finger is in the bottom bezel of the screen.
-                    elif index_finger_tip_coords[1] > image_height * 0.75:
-                        # Zoom out on the face.
-                        zoom_factor = 1.1
-                # See if the index finger is in the left bezel of the screen.
-                if index_finger_tip_coords[0] < image_width * 0.25:
-                    # See if the index finger is in the top bezel of the screen.
-                    if index_finger_tip_coords[1] < image_height * 0.25:
-                        # Zoom in on the face.
-                        zoom_factor = 1.25
-                    # See if the index finger is in the bottom bezel of the screen.
-                    elif index_finger_tip_coords[1] > image_height * 0.75:
-                        # Zoom out on the face.
-                        zoom_factor = 1.1
-                # see if both of the wrist are in the face bounding box, zoom out.
-                if (
-                    wrist_coords[0] > x
-                    and wrist_coords[0] < x + w
-                    and wrist_coords[1] > y
-                    and wrist_coords[1] < y + h
-                ):
-                    zoom_factor = 1
 
                 # Write the hand detcted text on the down right corner of the screen.
                 image = text_overlay(
