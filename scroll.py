@@ -55,7 +55,7 @@ def hand_zoom_factor(x, y, w, h, hand_landmarks):
         and wrist_coords[1] < y + h
     ):
         zoom_factor = 1
-
+    return zoom_factor
 
 # For webcam input:
 cap = cv2.VideoCapture(0)
@@ -90,7 +90,8 @@ with mp_hands.Hands(
 
         if results.multi_hand_landmarks:
             for hand_landmarks in results.multi_hand_landmarks:
-
+                # Get the zoom factor based on the hand landmarks.
+                zoom_factor = hand_zoom_factor(x, y, w, h, hand_landmarks)
 
                 # Write the hand detcted text on the down right corner of the screen.
                 image = text_overlay(
