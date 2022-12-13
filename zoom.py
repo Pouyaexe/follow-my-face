@@ -1,6 +1,20 @@
-i
+import cv2
+
 # Function to zoom on the detected face and follow it.
 def zoom_in(image, x, y, w, h, zoom_factor):
+    """_summary_
+
+    Args:
+        image (_type_): _description_
+        x (_type_): _description_
+        y (_type_): _description_
+        w (_type_): _description_
+        h (_type_): _description_
+        zoom_factor (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
 
     # Zoom factor must be greater than 1.
     zoom_factor = zoom_factor**4
