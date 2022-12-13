@@ -8,7 +8,7 @@ mp_drawing_styles = mp.solutions.drawing_styles
 mp_hands = mp.solutions.hands
 
 # Function to zoom on the detected face and follow it.
-def zoom_in(image: np.ndarray, x, y, w, h, zoom_factor):
+def zoom_in(image: np.ndarray, x: int, y: int, w: int, h: int, zoom_factor: float) -> np.ndarray:
     """Zoom in on the face and follow it.
 
     Args:
