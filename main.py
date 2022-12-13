@@ -1,6 +1,7 @@
 import cv2
 import mediapipe as mp
-from utils import zoom_in, text_overlay, hand_zoom_factor
+from utils import zoom_in, hand_zoom_factor
+from mouse import move_mouse
 mp_hands = mp.solutions.hands
 
 # Load the Haar cascade classifier for face detection.
@@ -43,7 +44,7 @@ with mp_hands.Hands(
         if results.multi_hand_landmarks:            
             # Get the zoom factor and draw the hand landmarks and connections on the image.
             image, zoom_factor = hand_zoom_factor(image, results, x, y, w, h, zoom_factor)           
-
+        
         # if the zoom factor is greater than 1, then we are zoomed in on the face.
         if zoom_factor > 1:
             # Draw the zoomed in face on the screen.
