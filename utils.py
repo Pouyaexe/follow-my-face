@@ -82,38 +82,39 @@ def text_overlay(image, text, x, y, color, font_size):
 
 
 def hand_zoom_factor(x, y, w, h, hand_landmarks, zoom_factor = 1):
-    
-    index_finger_tip_coords = (
-        hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].x
-        * image_width,
-        hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y
-        * image_height,
-    )
+    for hand_landmarks in results.multi_hand_landmarks:
+                    # Get the zoom factor based on the hand landmarks.    
+        index_finger_tip_coords = (
+            hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].x
+            * image_width,
+            hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y
+            * image_height,
+        )
 
-    wrist_coords = (
-        hand_landmarks.landmark[mp_hands.HandLandmark.WRIST].x
-        * image_width,
-        hand_landmarks.landmark[mp_hands.HandLandmark.WRIST].y
-        * image_height,
-    )
+        wrist_coords = (
+            hand_landmarks.landmark[mp_hands.HandLandmark.WRIST].x
+            * image_width,
+            hand_landmarks.landmark[mp_hands.HandLandmark.WRIST].y
+            * image_height,
+        )
 
-    if index_finger_tip_coords[0] > image_width * 0.75:
-        if index_finger_tip_coords[1] < image_height * 0.25:
-            zoom_factor = 1.25
-        elif index_finger_tip_coords[1] > image_height * 0.75:
-            zoom_factor = 1.1
-    if index_finger_tip_coords[0] < image_width * 0.25:
-        if index_finger_tip_coords[1] < image_height * 0.25:
-            zoom_factor = 1.25
-        elif index_finger_tip_coords[1] > image_height * 0.75:
-            zoom_factor = 1.1
-    if (
-        wrist_coords[0] > x
-        and wrist_coords[0] < x + w
-        and wrist_coords[1] > y
-        and wrist_coords[1] < y + h
-    ):
-        zoom_factor = 1
+        if index_finger_tip_coords[0] > image_width * 0.75:
+            if index_finger_tip_coords[1] < image_height * 0.25:
+                zoom_factor = 1.25
+            elif index_finger_tip_coords[1] > image_height * 0.75:
+                zoom_factor = 1.1
+        if index_finger_tip_coords[0] < image_width * 0.25:
+            if index_finger_tip_coords[1] < image_height * 0.25:
+                zoom_factor = 1.25
+            elif index_finger_tip_coords[1] > image_height * 0.75:
+                zoom_factor = 1.1
+        if (
+            wrist_coords[0] > x
+            and wrist_coords[0] < x + w
+            and wrist_coords[1] > y
+            and wrist_coords[1] < y + h
+        ):
+            zoom_factor = 1
     return zoom_factor
 
 if __name__ == "__main__":

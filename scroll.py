@@ -43,8 +43,7 @@ with mp_hands.Hands(
         image_height, image_width, _ = image.shape
 
         if results.multi_hand_landmarks:
-            for hand_landmarks in results.multi_hand_landmarks:
-                # Get the zoom factor based on the hand landmarks.
+
                 zoom_factor = hand_zoom_factor(x, y, w, h, hand_landmarks, zoom_factor)
 
                 # Write the hand detcted text on the down right corner of the screen.
