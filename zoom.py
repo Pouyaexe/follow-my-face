@@ -44,3 +44,6 @@ def zoom_in(image, x, y, w, h, zoom_factor):
     # Overlay the face image on the original image.
     # image = cv2.addWeighted(src1=image, alpha=0, src2=face_image, beta=1, gamma=0)
     return image
+
+if __name__ == "__main__":
+    pass
