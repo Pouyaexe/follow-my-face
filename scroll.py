@@ -1,6 +1,6 @@
 import cv2
 import mediapipe as mp
-from utils import zoom_in, text_overlay
+from utils import zoom_in, text_overlay, hand_zoom_factor
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_hands = mp.solutions.hands
