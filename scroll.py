@@ -42,8 +42,7 @@ with mp_hands.Hands(
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
         image_height, image_width, _ = image.shape
         print(type(image))
-        if results.multi_hand_landmarks:
-            
+        if results.multi_hand_landmarks:            
             # Get the zoom factor based on the hand landmarks.
             zoom_factor = hand_zoom_factor(x, y, w, h, results, image_width, image_height, zoom_factor)
 

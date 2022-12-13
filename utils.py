@@ -95,6 +95,8 @@ def hand_zoom_factor(x, y, w, h, results , image, zoom_factor = 1):
     Returns:
         _type_: _description_
     """
+    image_height, image_width, _ = image.shape
+
     for hand_landmarks in results.multi_hand_landmarks:
                     # Get the zoom factor based on the hand landmarks.    
         index_finger_tip_coords = (
