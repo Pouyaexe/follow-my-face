@@ -45,5 +45,21 @@ def zoom_in(image, x, y, w, h, zoom_factor):
     # image = cv2.addWeighted(src1=image, alpha=0, src2=face_image, beta=1, gamma=0)
     return image
 
+# Function to overlay text on image using cv.putText() but filip the image first, display the text, then flip the image back.
+def text_overlay(image, text, x, y, color, font_size):
+    image = cv2.flip(image, 1)
+    cv2.putText(
+        img=image,
+        text=text,
+        org=(x, y),
+        fontFace=cv2.FONT_HERSHEY_SIMPLEX,
+        fontScale=font_size,
+        color=color,
+        thickness=2,
+    )
+    image = cv2.flip(image, 1)
+    return image
+
+
 if __name__ == "__main__":
     pass
