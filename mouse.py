@@ -6,8 +6,9 @@ def move_mouse(x, y):
   screen_height = ctypes.windll.user32.GetSystemMetrics(1)
 
   # Scale the coordinates to the screen size.
-  x_scaled = x * screen_width
-  y_scaled = y * screen_height
+  x_scaled = int(x * screen_width)
+  y_scaled = int(y * screen_height)
+
 
   # Move the mouse to the scaled coordinates.
   ctypes.windll.user32.SetCursorPos(x_scaled, y_scaled)
