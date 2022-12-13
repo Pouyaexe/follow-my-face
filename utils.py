@@ -1,6 +1,6 @@
 import cv2
 import mediapipe as mp
-from types import tuple
+from types import Tuple
 import numpy as np
 
 mp_drawing = mp.solutions.drawing_utils
