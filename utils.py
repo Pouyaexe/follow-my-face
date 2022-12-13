@@ -47,6 +47,20 @@ def zoom_in(image, x, y, w, h, zoom_factor):
 
 # Function to overlay text on image using cv.putText() but filip the image first, display the text, then flip the image back.
 def text_overlay(image, text, x, y, color, font_size):
+    """Overlay text on image using cv.putText() but filip the image first, display the text, then flip the image back.
+
+    Args:
+        image (): input image
+        text (_type_): overlay text
+        x (_type_): x coordinate of the text
+        y (_type_): y coordinate of the text
+        color (_type_): color of the text
+        font_size (_type_): font size of the text
+
+    Returns:
+        _type_: output image
+    """
+    # flip the image horizontally
     image = cv2.flip(image, 1)
     # create the text overlay
     cv2.putText(
