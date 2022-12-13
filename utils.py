@@ -152,7 +152,7 @@ def hand_zoom_factor(x, y, w, h, results , image, zoom_factor = 1):
             mp_drawing_styles.get_default_hand_landmarks_style(),
             mp_drawing_styles.get_default_hand_connections_style(),
         )
-    return zoom_factor
+    return image, zoom_factor
 
 if __name__ == "__main__":
     pass

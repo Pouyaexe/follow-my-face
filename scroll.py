@@ -43,8 +43,8 @@ with mp_hands.Hands(
         image_height, image_width, _ = image.shape
         print(type(image))
         if results.multi_hand_landmarks:            
-            # Get the zoom factor based on the hand landmarks.
-            zoom_factor, 
+            # Get the zoom factor and draw the hand landmarks and connections on the image.
+            image, zoom_factor = hand_zoom_factor(image, results, zoom_factor, x, y, w, h)           
 
         # if the zoom factor is greater than 1, then we are zoomed in on the face.
         if zoom_factor > 1:
