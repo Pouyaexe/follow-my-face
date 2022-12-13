@@ -47,6 +47,8 @@ with mp_hands.Hands(
             # Move the mouse cursor.
             move_mouse(results.multi_hand_landmarks[0].landmark[8].x, results.multi_hand_landmarks[0].landmark[8].y)
             
+            
+            
         # if the zoom factor is greater than 1, then we are zoomed in on the face.
         if zoom_factor > 1:
             # Draw the zoomed in face on the screen.
