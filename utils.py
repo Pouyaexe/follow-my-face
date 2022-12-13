@@ -79,13 +79,13 @@ def text_overlay(image, text, x, y, color, font_size):
 
 def hand_zoom_factor(x, y, w, h, hand_landmarks, zoom_factor = 1):
     
-    # Get the coordinates of the index finger tip.
     index_finger_tip_coords = (
         hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].x
         * image_width,
         hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y
         * image_height,
     )
+
     wrist_coords = (
         hand_landmarks.landmark[mp_hands.HandLandmark.WRIST].x
         * image_width,
@@ -93,27 +93,16 @@ def hand_zoom_factor(x, y, w, h, hand_landmarks, zoom_factor = 1):
         * image_height,
     )
 
-    # See if the index finger is in the right bezel of the screen.
     if index_finger_tip_coords[0] > image_width * 0.75:
-        # See if the index finger is in the top bezel of the screen.
         if index_finger_tip_coords[1] < image_height * 0.25:
-            # Zoom in on the face.
             zoom_factor = 1.25
-        # See if the index finger is in the bottom bezel of the screen.
         elif index_finger_tip_coords[1] > image_height * 0.75:
-            # Zoom out on the face.
             zoom_factor = 1.1
-    # See if the index finger is in the left bezel of the screen.
     if index_finger_tip_coords[0] < image_width * 0.25:
-        # See if the index finger is in the top bezel of the screen.
         if index_finger_tip_coords[1] < image_height * 0.25:
-            # Zoom in on the face.
             zoom_factor = 1.25
-        # See if the index finger is in the bottom bezel of the screen.
         elif index_finger_tip_coords[1] > image_height * 0.75:
-            # Zoom out on the face.
             zoom_factor = 1.1
-    # see if both of the wrist are in the face bounding box, zoom out.
     if (
         wrist_coords[0] > x
         and wrist_coords[0] < x + w
