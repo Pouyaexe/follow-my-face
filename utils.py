@@ -53,7 +53,7 @@ def zoom_in(image, x, y, w, h, zoom_factor):
     return image
 
 # Function to overlay text on image using cv.putText() but filip the image first, display the text, then flip the image back.
-def text_overlay(image, text, x, y, color, font_size):
+def text_overlay(image: np.ndarray, text, x, y, color, font_size):
     """Overlay text on image using cv.putText() but filip the image first, display the text, then flip the image back.
 
     Args:
