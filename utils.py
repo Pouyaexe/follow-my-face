@@ -84,7 +84,7 @@ def text_overlay(image, text, x, y, color, font_size):
     return image
 
 
-def hand_zoom_factor(image, results, x, y, w, h, zoom_factor = 1):
+def hand_zoom_factor(image, results, x:int, y, w, h, zoom_factor = 1):
     """Get the zoom factor based on the hand landmarks.
 
     Args:
