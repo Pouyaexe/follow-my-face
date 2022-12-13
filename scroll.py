@@ -11,7 +11,7 @@ face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 # Global zoom factor. if the zoom factor goes higher than 1, the image will zoom in on the detected face.
 zoom_factor = 1
 
-def hand_zoom_factor(x, y, w, h, zoom_factor):
+def hand_zoom_factor(x, y, w, h, hand_landmarks):
     
     # Get the coordinates of the index finger tip.
     index_finger_tip_coords = (
