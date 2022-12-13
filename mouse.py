@@ -17,3 +17,5 @@ def click_mouse():
   # Simulate a left mouse button click.
   ctypes.windll.user32.mouse_event(2, 0, 0, 0, 0)
   ctypes.windll.user32.mouse_event(4, 0, 0, 0, 0)
+
+
