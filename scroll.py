@@ -41,7 +41,7 @@ with mp_hands.Hands(
         image.flags.writeable = True
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
         image_height, image_width, _ = image.shape
-        print(type(results)) # <class 'mediapipe.python.solutions.hands.Hands'>
+
         if results.multi_hand_landmarks:            
             # Get the zoom factor and draw the hand landmarks and connections on the image.
             image, zoom_factor = hand_zoom_factor(image, results, x, y, w, h, zoom_factor)           
