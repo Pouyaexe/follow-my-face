@@ -84,20 +84,15 @@ def text_overlay(image: np.ndarray, text: str, x: int, y: int, color: Tuple[int,
     return image
 
 
-def hand_zoom_factor(image: np.ndarray, results: mp_hands.Hands, x:int, y:int, w:int, h:int, zoom_factor:float = 1) :
+def hand_zoom_factor(image: np.ndarray, results: mp_hands.Hands, x:int, y:int, w:int, h:int, zoom_factor:float = 1)-> Tuple[np.ndarray, float] :
+    
     """Get the zoom factor based on the hand landmarks.
-
-    Args:
-        x (int): x coordinate of the face bounding box
-        y (int): y coordinate of the face bounding box
-        w (int): width of the face bounding box
-        h (int): height of the face bounding box
-        results (): results from the hand detection model
-        zoom_factor (int, optional): _description_. Defaults to 1.
+    
 
     Returns:
         _type_: _description_
-    """
+    """    
+    
     image_height, image_width, _ = image.shape
 
     for hand_landmarks in results.multi_hand_landmarks:
