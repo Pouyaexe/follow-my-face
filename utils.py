@@ -84,8 +84,7 @@ def text_overlay(image: np.ndarray, text: str, x: int, y: int, color: Tuple[int,
     return image
 
 
-def hand_zoom_factor(image: np.ndarray, results: mp_hands.Hands
-    , x:int, y:int, w:int, h:int, zoom_factor:float = 1) :
+def hand_zoom_factor(image: np.ndarray, results: mp_hands.Hands, x:int, y:int, w:int, h:int, zoom_factor:float = 1) :
     """Get the zoom factor based on the hand landmarks.
 
     Args:
