@@ -42,11 +42,11 @@ with mp_hands.Hands(
         # Draw the hand annotations on the image.
         image.flags.writeable = True
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+        image_height, image_width, _ = image.shape
 
         if results.multi_hand_landmarks:
             for hand_landmarks in results.multi_hand_landmarks:
                 # Get the coordinates of the index finger tip.
-                image_height, image_width, _ = image.shape
 
                 index_finger_tip_coords = (
                     hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].x
