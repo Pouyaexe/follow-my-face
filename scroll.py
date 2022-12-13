@@ -44,7 +44,7 @@ with mp_hands.Hands(
         print(type(image))
         if results.multi_hand_landmarks:            
             # Get the zoom factor based on the hand landmarks.
-            zoom_factor = hand_zoom_factor(x, y, w, h, results, image_width, image_height, zoom_factor)
+            zoom_factor = hand_zoom_factor(x, y, w, h, results, image, zoom_factor)
 
         # if the zoom factor is greater than 1, then we are zoomed in on the face.
         if zoom_factor > 1:
