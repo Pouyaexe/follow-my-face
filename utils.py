@@ -12,15 +12,15 @@ def zoom_in(image: np.ndarray, x: int, y: int, w: int, h: int, zoom_factor: floa
     """Zoom in on the face and follow it.
 
     Args:
-        image: input image
-        x: x coordinate of the face bounding box
-        y: y coordinate of the face bounding box
-        w: width of the face bounding box
-        h: height of the face bounding box
-        zoom_factor: zoom factor
+        image (np.ndarray): input image
+        x (int): x coordinate of the face bounding box
+        y (int): y coordinate of the face bounding box
+        w (int): width of the face bounding box
+        h (int): height of the face bounding box
+        zoom_factor (float): zoom factor
 
     Returns:
-        image: output image
+        np.ndarray: zoomed in image
     """
 
     # Zoom factor must be greater than 1.
@@ -57,15 +57,15 @@ def text_overlay(image: np.ndarray, text: str, x: int, y: int, color: Tuple[int,
     """Overlay text on image using cv.putText() but filip the image first, display the text, then flip the image back.
 
     Args:
-        image (): input image
-        text (_type_): overlay text
-        x (_type_): x coordinate of the text
-        y (_type_): y coordinate of the text
-        color (_type_): color of the text
-        font_size (_type_): font size of the text
+        image (np.ndarray): input image
+        text (str): text to overlay
+        x (int): x coordinate of the text
+        y (int): y coordinate of the text
+        color (Tuple[int, int, int]): color of the text
+        font_size (float): font size of the text
 
     Returns:
-        _type_: output image
+        np.ndarray: output image
     """
     # flip the image horizontally
     image = cv2.flip(image, 1)
@@ -155,6 +155,7 @@ def hand_zoom_factor(image: np.ndarray, results: mp_hands.Hands, x:int, y:int, w
             mp_drawing_styles.get_default_hand_connections_style(),
         )
     return image, zoom_factor
+
 
 if __name__ == "__main__":
     pass
