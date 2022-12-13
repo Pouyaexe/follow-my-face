@@ -84,13 +84,20 @@ def text_overlay(image: np.ndarray, text: str, x: int, y: int, color: Tuple[int,
     return image
 
 
-def hand_zoom_factor(image: np.ndarray, results: mp_hands.Hands, x:int, y:int, w:int, h:int, zoom_factor:float = 1)-> Tuple[np.ndarray, float] :
-    
+def hand_zoom_factor(image: np.ndarray, results: mp_hands.Hands, x:int, y:int, w:int, h:int, zoom_factor:float = 1)-> Tuple[np.ndarray, float] :   
     """Get the zoom factor based on the hand landmarks.
     
+    Args:
+        image (np.ndarray): input image
+        results (mp_hands.Hands): hand landmarks
+        x (int): x coordinate of the face bounding box
+        y (int): y coordinate of the face bounding box
+        w (int): width of the face bounding box
+        h (int): height of the face bounding box
+        zoom_factor (float, optional): zoom factor. Defaults to 1.
 
     Returns:
-        _type_: _description_
+        Tuple[np.ndarray, float]: output image and zoom factor
     """    
     
     image_height, image_width, _ = image.shape
