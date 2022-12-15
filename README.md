@@ -11,8 +11,3 @@ pip_freeze.txt: This is a list of all the python packages that are required to r
 versions.txt: This file contains the version numbers of the various libraries and packages that are used in the project.
 To use the program, simply run python main.py from the command line. This will start the video capture and the hand tracker, and the program will begin tracking any faces and hands that are detected in the video feed. You can use the position of your index finger to zoom in on a face, and the face tracker will follow your face as you move around. You can also use your hand to move the mouse pointer and interact with the program.
 .
-├── main.py
-├── mouse.py
-├── utils.py
-├── pip_freeze.txt
-└── versions.txt
