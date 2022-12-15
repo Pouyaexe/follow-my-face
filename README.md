@@ -1,4 +1,4 @@
-The "follow my face" project is a python program that uses the MediaPipe framework to track hands in a video feed, and then uses the position of the index finger to zoom in on a detected face and follow it. The program also allows the user to control the mouse pointer using the hand tracker.
+*The "follow my face" project is a python program that uses the MediaPipe framework to track hands in a video feed, and then uses the position of the index finger to zoom in on a detected face and follow it. The program also allows the user to control the mouse pointer using the hand tracker.*
 
 The project uses the OpenCV library for basic image processing and video capture, and the MediaPipe framework for hand tracking. The program is organized into several different modules:
 
