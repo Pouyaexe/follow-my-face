@@ -2,6 +2,9 @@ import cv2
 import mediapipe as mp
 from utils import zoom_in, hand_zoom_factor
 from mouse import move_mouse, click_mouse
+import tkinter as tk
+from tkinter import PhotoImage
+import PIL.Image, PIL.ImageTk
 
 mp_hands = mp.solutions.hands
 
