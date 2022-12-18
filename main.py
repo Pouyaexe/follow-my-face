@@ -1,6 +1,6 @@
 import cv2
 import mediapipe as mp
-from utils import zoom_in, hand_zoom_factor
+from utils import zoom_in, hand_zoom_factor, process_hands
 from mouse import move_mouse, click_mouse
 mp_hands = mp.solutions.hands
 
