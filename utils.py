@@ -156,13 +156,6 @@ def hand_zoom_factor(image: np.ndarray, results: mp_hands.Hands, x:int, y:int, w
         )
     return image, zoom_factor
 
-def detect_face(image):
-    # Detect faces in the image.
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-    return faces
-
-
 def process_hands(image, results):
     # Draw the hand annotations on the image.
     image.flags.writeable = True
