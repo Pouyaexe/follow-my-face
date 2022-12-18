@@ -156,6 +156,18 @@ def hand_zoom_factor(image: np.ndarray, results: mp_hands.Hands, x:int, y:int, w
         )
     return image, zoom_factor
 
+def process_hands(image, results):
+    # Draw the hand annotations on the image.
+    image.flags.writeable = True
+    image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+    image_height, image_width, _ = image.shape
+
+    if results.multi_hand_landmarks:            
+        # Get the zoom factor and draw the hand landmarks and connections on the image.
+        image, zoom_factor = hand_zoom_factor(image, results, x, y, w, h, zoom_factor)           
+        # Move the mouse cursor.
+        move_mouse(results.multi_hand_landmarks[0].landmark[8].x, results.multi_hand_landmarks[0].landmark[8].y)
+    return image
 
 if __name__ == "__main__":
     pass
