@@ -35,7 +35,7 @@ with mp_hands.Hands(
             cv2.rectangle(image, (x, y), (x + w, y + h), (255, 255, 255), 2)
 
         # Process the hands in the image.
-        image = process_hands(image, results, x, y, w, h)
+        image = process_hands(image, results, x, y, w, h, zoom_factor)
                         
         # if the zoom factor is greater than 1, then we are zoomed in on the face.
         if zoom_factor > 1:
