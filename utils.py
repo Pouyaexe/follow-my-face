@@ -2,7 +2,7 @@ import cv2
 import mediapipe as mp
 from typing import Tuple
 import numpy as np
-
+from mouse import move_mouse
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_hands = mp.solutions.hands
