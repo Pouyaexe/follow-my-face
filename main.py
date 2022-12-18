@@ -2,21 +2,7 @@ import cv2
 import mediapipe as mp
 from utils import zoom_in, hand_zoom_factor
 from mouse import move_mouse, click_mouse
-import tkinter as tk
-from tkinter import PhotoImage
-import PIL.Image, PIL.ImageTk
 mp_hands = mp.solutions.hands
-
-class MainWindow(tk.Tk):
-    def __init__(self):
-        super().__init__()
-
-        # Set up the user interface
-        self.label = tk.Label(self)
-        self.label.pack()
-
-        self.geometry("800x600")
-        self.title("MediaPipe Hands")
 
 
 # Load the Haar cascade classifier for face detection.
@@ -68,20 +54,12 @@ with mp_hands.Hands(
             # Draw the zoomed in face on the screen.
             image = zoom_in(image, x, y, w, h, zoom_factor)
 
-        # Convert the image to a PhotoImage object
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        image = PIL.Image.fromarray(image)
-        image = PIL.ImageTk.PhotoImage(image)
+        # Flip the image horizontally for a selfie horizontally for a selfie-view display. 
+        cv2.namedWindow("MediaPipe Hands", cv2.WINDOW_KEEPRATIO)
 
-        # Update the label with the new image
-        self.label.configure(image=image)
-        self.label.image = image
-
+        # Display the image.
+        cv2.imshow("MediaPipe Hands", cv2.flip(image, 1) )
         if cv2.waitKey(5) & 0xFF == 27:
             break
 
 cap.release()
-
-if __name__ == "__main__":
-    window = MainWindow()
-    window.mainloop()
