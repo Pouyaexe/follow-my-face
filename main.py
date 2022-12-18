@@ -68,11 +68,15 @@ with mp_hands.Hands(
             # Draw the zoomed in face on the screen.
             image = zoom_in(image, x, y, w, h, zoom_factor)
 
-        # Flip the image horizontally for a selfie horizontally for a selfie-view display. 
-        cv2.namedWindow("MediaPipe Hands", cv2.WINDOW_KEEPRATIO)
+        # Convert the image to a PhotoImage object
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        image = PIL.Image.fromarray(image)
+        image = PIL.ImageTk.PhotoImage(image)
 
-        # Display the image.
-        cv2.imshow("MediaPipe Hands", cv2.flip(image, 1) )
+        # Update the label with the new image
+        self.label.configure(image=image)
+        self.label.image = image
+
         if cv2.waitKey(5) & 0xFF == 27:
             break
 
