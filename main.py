@@ -81,3 +81,7 @@ with mp_hands.Hands(
             break
 
 cap.release()
+
+if __name__ == "__main__":
+    window = MainWindow()
+    window.mainloop()
