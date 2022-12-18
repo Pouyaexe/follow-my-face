@@ -7,10 +7,10 @@ def detect_face(image):
     """detecting faces in the image
 
     Args:
-        image (): _description_
+        image (np.ndarray): input image
 
     Returns:
-        _type_: _description_
+        np.ndarray: detected faces
     """
     # Detect faces in the image.
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
