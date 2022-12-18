@@ -4,10 +4,10 @@ import cv2
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
 def detect_face(image):
-    """d
+    """detecting faces in the image
 
     Args:
-        image (_type_): _description_
+        image (): _description_
 
     Returns:
         _type_: _description_
