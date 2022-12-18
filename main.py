@@ -2,7 +2,9 @@ import cv2
 import mediapipe as mp
 from utils import zoom_in, hand_zoom_factor
 from mouse import move_mouse, click_mouse
+
 mp_hands = mp.solutions.hands
+
 
 # Load the Haar cascade classifier for face detection.
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
