@@ -2,11 +2,9 @@ import cv2
 import mediapipe as mp
 from utils import zoom_in, hand_zoom_factor, process_hands
 from mouse import move_mouse, click_mouse
+from face import detect_face
+
 mp_hands = mp.solutions.hands
-
-
-# Load the Haar cascade classifier for face detection.
-face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
 # Global zoom factor. if the zoom factor goes higher than 1, the image will zoom in on the detected face.
 zoom_factor = 1
@@ -31,24 +29,15 @@ with mp_hands.Hands(
         results = hands.process(image)
 
         # Detect faces in the webcam feed.
-        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+        faces = detect_face(image)
 
         # Draw a rectangle around each detected face. The color is BGR. so for a white rectangle, we use (255, 255, 255).
         for (x, y, w, h) in faces:
             cv2.rectangle(image, (x, y), (x + w, y + h), (255, 255, 255), 2)
 
-        # Draw the hand annotations on the image.
-        image.flags.writeable = True
-        image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-        image_height, image_width, _ = image.shape
-
-        if results.multi_hand_landmarks:            
-            # Get the zoom factor and draw the hand landmarks and connections on the image.
-            image, zoom_factor = hand_zoom_factor(image, results, x, y, w, h, zoom_factor)           
-            # Move the mouse cursor.
-            move_mouse(results.multi_hand_landmarks[0].landmark[8].x, results.multi_hand_landmarks[0].landmark[8].y)
-                    
+        # Process the hands in the image.
+        image = process_hands(image, results)
+                        
         # if the zoom factor is greater than 1, then we are zoomed in on the face.
         if zoom_factor > 1:
             # Draw the zoomed in face on the screen.
