@@ -161,8 +161,8 @@ def process_hands(image, results, x, y, w, h):
 
     Args:
         image (np.ndarray): input image
-        results (
-        x (_type_): _description_
+        results (mp_hands.Hands): hand landmarks
+        x (int): _description_
         y (_type_): _description_
         w (_type_): _description_
         h (_type_): _description_
