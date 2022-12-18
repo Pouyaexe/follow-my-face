@@ -156,7 +156,7 @@ def hand_zoom_factor(image: np.ndarray, results: mp_hands.Hands, x:int, y:int, w
         )
     return image, zoom_factor
 
-def process_hands(image, results, x, y, w, h):
+def process_hands(image, results, x, y, w, h, zoom_factor):
     """Process the hand landmarks.
 
     Args:
@@ -166,6 +166,7 @@ def process_hands(image, results, x, y, w, h):
         y (int): y coordinate of the face bounding box
         w (int): width of the face bounding box
         h (int): height of the face bounding box
+        zoom_factor (float): zoom factor
 
     Returns:
         np.ndarray: output image
