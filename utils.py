@@ -181,7 +181,7 @@ def process_hands(image, results, x, y, w, h, zoom_factor):
         image, zoom_factor = hand_zoom_factor(image, results, x, y, w, h, zoom_factor)           
         # Move the mouse cursor.
         move_mouse(results.multi_hand_landmarks[0].landmark[8].x, results.multi_hand_landmarks[0].landmark[8].y)
-    return image
+    return image, zoom_factor
 
 if __name__ == "__main__":
     pass
