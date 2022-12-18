@@ -5,8 +5,18 @@ from mouse import move_mouse, click_mouse
 import tkinter as tk
 from tkinter import PhotoImage
 import PIL.Image, PIL.ImageTk
-
 mp_hands = mp.solutions.hands
+
+class MainWindow(tk.Tk):
+    def __init__(self):
+        super().__init__()
+
+        # Set up the user interface
+        self.label = tk.Label(self)
+        self.label.pack()
+
+        self.geometry("800x600")
+        self.title("MediaPipe Hands")
 
 
 # Load the Haar cascade classifier for face detection.
