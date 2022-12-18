@@ -162,13 +162,13 @@ def process_hands(image, results, x, y, w, h):
     Args:
         image (np.ndarray): input image
         results (mp_hands.Hands): hand landmarks
-        x (int): _description_
-        y (_type_): _description_
-        w (_type_): _description_
-        h (_type_): _description_
+        x (int): x coordinate of the face bounding box
+        y (int): y coordinate of the face bounding box
+        w (int): width of the face bounding box
+        h (int): height of the face bounding box
 
     Returns:
-        _type_: _description_
+        np.ndarray: output image
     """
     # Draw the hand annotations on the image.
     image.flags.writeable = True
