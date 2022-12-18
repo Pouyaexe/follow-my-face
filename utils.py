@@ -156,7 +156,20 @@ def hand_zoom_factor(image: np.ndarray, results: mp_hands.Hands, x:int, y:int, w
         )
     return image, zoom_factor
 
-def process_hands(image, results):
+def process_hands(image, results, x, y, w, h):
+    """Process the hand landmarks.
+
+    Args:
+        image (np.ndarray): input image
+        results (
+        x (_type_): _description_
+        y (_type_): _description_
+        w (_type_): _description_
+        h (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     # Draw the hand annotations on the image.
     image.flags.writeable = True
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
