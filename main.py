@@ -30,7 +30,7 @@ with mp_hands.Hands(
 
         # Detect faces in the webcam feed.
         faces = detect_face(image)
-
+        print(faces)
         # Draw a rectangle around each detected face. The color is BGR. so for a white rectangle, we use (255, 255, 255).
         for (x, y, w, h) in faces:
             cv2.rectangle(image, (x, y), (x + w, y + h), (255, 255, 255), 2)
