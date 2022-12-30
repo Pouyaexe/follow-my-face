@@ -2,6 +2,7 @@
 
 The project uses the OpenCV library for basic image processing and video capture, and the MediaPipe framework for hand tracking. The program is organized into several different modules:
 
+
 main.py: This is the main entry point for the program. It initializes the video capture and the hand tracker, and then starts the face tracking loop.
 mouse.py: This module contains the MouseController class, which can be used to move the mouse pointer on the screen. The MouseController class has methods for moving the mouse to a specific screen location, and for clicking the mouse buttons.
 utils.py: This module contains various utility functions that are used throughout the project, including the zoom_in and hand_zoom_factor functions, which are used to calculate the zoom level based on the position of the index finger.
