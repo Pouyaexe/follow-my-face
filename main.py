@@ -9,7 +9,6 @@ mp_hands = mp.solutions.hands
 # Global zoom factor. if the zoom factor goes higher than 1, the image will zoom in on the detected face.
 zoom_factor = 1
 
-
 # For webcam input:
 cap = cv2.VideoCapture(0)
 with mp_hands.Hands(
