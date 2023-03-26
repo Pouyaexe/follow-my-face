@@ -30,10 +30,10 @@ with mp_hands.Hands(
 
         # Detect faces in the webcam feed.
         faces = detect_face(image)
-        print(faces)
+        print(faces) # Print the coordinates of the detected face.
         # Draw a rectangle around each detected face. The color is BGR. so for a white rectangle, we use (255, 255, 255).
         for (x, y, w, h) in faces:
-            cv2.rectangle(image, (x, y), (x + w, y + h), (255, 255, 255), 2)
+            cv2.rectangle(image, (x, y), (x + w, y + h), (255, 255, 255), 2) # 
 
         # Process the hands in the image.
         image, zoom_factor = process_hands(image, results, x, y, w, h, zoom_factor)
