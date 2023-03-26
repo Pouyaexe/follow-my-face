@@ -15,7 +15,7 @@ def move_mouse(x, y):
 
 
 def click_mouse():
-    # Simulate a left mouse button click.
+    # Simulate a left mouse button click, when the hand is closed.
     ctypes.windll.user32.mouse_event(2, 0, 0, 0, 0)
     ctypes.windll.user32.mouse_event(4, 0, 0, 0, 0)
 
